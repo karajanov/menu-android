@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
     EditText firstOperand, secondOperand;
     TextView result;
     boolean isScientific = false;
-    boolean isEntryValid = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         initializeOperatorBtns();
 
         //Hide additional buttons
-         hideAdditionalBtns();
+        hideAdditionalBtns();
 
         //Event listeners
         addOperatorEventHandlers();
@@ -117,9 +117,9 @@ public class MainActivity extends AppCompatActivity {
         operatorBtns[5].setVisibility(View.VISIBLE);
     }
 
-    private void addOperatorEventHandlers(){
+    private void addOperatorEventHandlers() {
 
-        for(int i = 0; i < operatorBtns.length; ++i){
+        for (int i = 0; i < operatorBtns.length; ++i) {
 
             final int tempI = i;
 
@@ -130,55 +130,56 @@ public class MainActivity extends AppCompatActivity {
                     String first = firstOperand.getText().toString();
                     String second = secondOperand.getText().toString();
 
-                    double a = 0.0;
-                    double b = 0.0;
+                    double a, b;
                     double c = 0.0;
 
-                    if(!(first.isEmpty()) && !(second.isEmpty())){
+                    if (!(first.isEmpty()) && !(second.isEmpty())) {
 
                         a = Double.parseDouble(first);
                         b = Double.parseDouble(second);
-                        isEntryValid = true;
 
-                    }else{
+                        switch (operatorBtns[tempI].getText().toString()) {
 
-                        isEntryValid = false;
-                    }
+                            case "+":
 
-                    switch(operatorBtns[tempI].getText().toString()){
+                                c = a + b;
+                                break;
 
-                        case "+":
+                            case "-":
 
-                            c = a+b;
-                            break;
+                                c = a - b;
+                                break;
 
-                        case "-":
+                            case "*":
+                                c = a * b;
+                                break;
 
-                            c=a-b;
-                            break;
+                            case "/":
+                                c = (b == 0) ? Double.NaN : a / b;
+                                break;
 
-                        case "*":
-                            c=a*b;
-                            break;
+                            case "^":
+                                c = Math.pow(a, b);
+                                break;
 
-                        case "/":
-                            c = (b == 0) ? Double.NaN : a/b;
-                            break;
+                            case "sqrt":
+                                c = (a < 0) ? Double.NaN : Math.sqrt(a);
+                                Toast.makeText(getApplicationContext(), "Calculated sqrt of first operand", Toast.LENGTH_SHORT)
+                                        .show();
+                                break;
+                        }
 
-                        case "^":
-                            c=Math.pow(a,b);
-                            break;
-
-                        case "sqrt":
-                            c = Math.sqrt(a);
-                            break;
-                    }
-
-                    if(isEntryValid) {
                         result.setText(String.valueOf(c));
-                    }else{
+
+                    } else {
+
+                        Toast.makeText(getApplicationContext(), "Empty field not allowed", Toast.LENGTH_SHORT)
+                                .show();
+
                         result.setText("");
+
                     }
+
                 }
             });
 
