@@ -4,9 +4,10 @@
     <item
         android:id="@+id/item_darkmode"
         android:icon="@drawable/ic_darkmode"
-        android:title="Dark"
-        app:showAsAction="always" />
+        android:title="@string/item_dark"
+        app:showAsAction="ifRoom" />
     <item
-        android:title="Item"
-        app:showAsAction="always" />
+        android:id="@+id/item_scientific"
+        android:title="@string/item_sci"
+        app:showAsAction="never" />
 </menu>

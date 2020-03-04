@@ -9,4 +9,6 @@
     <string name="result">Result</string>
     <string name="hint1">First operand</string>
     <string name="hint2">Second operand</string>
+    <string name="item_dark">Dark Mode</string>
+    <string name="item_sci">Scientific Mode</string>
 </resources>
