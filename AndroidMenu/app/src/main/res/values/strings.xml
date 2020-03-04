@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">AndroidMenu</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="mult">*</string>
+    <string name="div">/</string>
+    <string name="exp">^</string>
+    <string name="sqroot">sqrt</string>
+    <string name="result">Result</string>
+    <string name="hint1">First operand</string>
+    <string name="hint2">Second operand</string>
+</resources>
