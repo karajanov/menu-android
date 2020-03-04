@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     EditText firstOperand, secondOperand;
     TextView result;
     boolean isScientific = false;
+    boolean isEntryValid = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
          hideAdditionalBtns();
 
         //Event listeners
+        addOperatorEventHandlers();
 
     }
 
@@ -125,25 +127,57 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
+                    String first = firstOperand.getText().toString();
+                    String second = secondOperand.getText().toString();
+
+                    double a = 0.0;
+                    double b = 0.0;
+                    double c = 0.0;
+
+                    if(!(first.isEmpty()) && !(second.isEmpty())){
+
+                        a = Double.parseDouble(first);
+                        b = Double.parseDouble(second);
+                        isEntryValid = true;
+
+                    }else{
+
+                        isEntryValid = false;
+                    }
+
                     switch(operatorBtns[tempI].getText().toString()){
 
                         case "+":
+
+                            c = a+b;
                             break;
 
                         case "-":
+
+                            c=a-b;
                             break;
 
                         case "*":
+                            c=a*b;
                             break;
 
                         case "/":
+                            c = (b == 0) ? Double.NaN : a/b;
                             break;
 
                         case "^":
+                            c=Math.pow(a,b);
                             break;
 
                         case "sqrt":
+                            c = Math.sqrt(a);
                             break;
+                    }
+
+                    if(isEntryValid) {
+                        result.setText(String.valueOf(c));
+                    }else{
+                        result.setText("");
                     }
                 }
             });

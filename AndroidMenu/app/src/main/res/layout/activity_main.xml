@@ -53,6 +53,7 @@
         android:layout_height="51dp"
         android:layout_marginTop="32dp"
         android:background="#FFFFFF"
+        android:maxLength="17"
         android:text="@string/result"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
